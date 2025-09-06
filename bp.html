@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>→ Botpress</title></head>
+<body>
+<script>
+  // читаем ?uid=... (можно добавить &email=&name= — см. ниже)
+  const p = new URLSearchParams(location.search);
+  const options = {
+    botId: "9ab72f63-fc63-4913-a260-353aba846edf",
+    clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
+    hostUrl: "https://cdn.botpress.cloud/webchat/v1",
+    messagingUrl: "https://messaging.botpress.cloud",
+    user: {
+      id: p.get("uid") || ("guest-" + Date.now()),
+      data: {
+        email: p.get("email") || "",
+        name: p.get("name") || ""
+      }
+    }
+  };
+  const url = "https://cdn.botpress.cloud/webchat/v1/index.html?options="
+            + encodeURIComponent(JSON.stringify(options));
+  location.replace(url); // мгновенная переадресация
+</script>
+</body></html>
