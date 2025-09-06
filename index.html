@@ -1,37 +1,50 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>Botpress Chat (mount)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    html,body {height:100%;margin:0}
-    #webchat {width:100%; height:100vh;}
-  </style>
-  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-</head>
-<body>
-  <!-- этот div обязателен, потому что ниже selector: "#webchat" -->
-  <div id="webchat"></div>
 
-  <script>
-    window.addEventListener('load', function () {
-      window.botpress.init({
-        botId: "9ab72f63-fc63-4913-a260-353aba846edf",
-        clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
-        hostUrl: "https://cdn.botpress.cloud/webchat/v1",
-        messagingUrl: "https://messaging.botpress.cloud",
-        selector: "#webchat",              // ← вот он, должен совпадать с div выше
-        configuration: {
-          version: "v1",
-          storageLocation: "sessionStorage",
-          themeMode: "light",
-          headerVariant: "glass",
-          variant: "solid",
-          radius: 4
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+<!-- In your <head> tag -->
+<script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
+<style>
+  #webchat .bpWebchat {
+    position: unset;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  #webchat .bpFab {
+    display: none;
+  }
+</style>
+
+<!-- Put this on your page BEFORE the script below -->
+<div id="webchat" style="width: 500px; height: 500px;"></div>
+
+<!-- In your <body> tag -->
+<script>
+  window.botpress.on("webchat:ready", () => {
+    window.botpress.open();
+  });
+  window.botpress.init({
+  "botId": "9ab72f63-fc63-4913-a260-353aba846edf",
+  "configuration": {
+    "version": "v1",
+    "botName": "",
+    "botDescription": "",
+    "website": {},
+    "email": {},
+    "phone": {},
+    "termsOfService": {},
+    "privacyPolicy": {},
+    "color": "#3276EA",
+    "variant": "solid",
+    "headerVariant": "glass",
+    "themeMode": "light",
+    "fontFamily": "inter",
+    "radius": 4,
+    "feedbackEnabled": true,
+    "footer": "[⚡ by Botpress](https://botpress.com/?from=webchat)",
+    "storageLocation": "sessionStorage"
+  },
+  "clientId": "c70682e5-9a81-47b2-9725-43b0b291edc6",
+  "selector": "#webchat"
+});
+</script>
