@@ -4,25 +4,34 @@
   <meta charset="utf-8" />
   <title>Botpress Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- стабильный CDN -->
+  <!-- стабильный CDN-скрипт -->
   <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+  <style>
+    /* ничего не скрываем: оставляем стандартную плавающую кнопку */
+    html,body { margin:0; padding:0; }
+  </style>
 </head>
 <body>
   <script>
-    // читаем uid из URL: ?uid=...
+    // 1) читаем параметры из URL (?uid=... &email=... &name=...)
     const p = new URLSearchParams(location.search);
-    const uid = p.get('uid') || ('guest-' + Date.now());
+    const uid   = p.get('uid')   || ('guest-' + Date.now());
+    const email = p.get('email') || '';
+    const name  = p.get('name')  || '';
 
-    // если хочешь — откроем чат сразу
+    // 2) откроем чат сразу после загрузки виджета (по желанию можно убрать)
     window.botpress.on('webchat:ready', () => window.botpress.open());
 
-    // инициализация с передачей user.id
+    // 3) инициализация виджета с передачей user.id (+доп. данные)
     window.botpress.init({
       botId: "9ab72f63-fc63-4913-a260-353aba846edf",
       clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
       hostUrl: "https://cdn.botpress.cloud/webchat/v1",
       messagingUrl: "https://messaging.botpress.cloud",
-      user: { id: uid },               // ← вот тут твой ID летит в бота
+      user: {
+        id: uid,                // ← сюда прилетит ?uid=...
+        data: { email, name }   // ← опционально
+      },
       configuration: {
         version: "v1",
         botName: "Bot",
@@ -38,5 +47,15 @@
       }
     });
   </script>
+
+  <!-- На всякий случай: если JS отключён — ссылка на шареабл-страницу -->
+  <noscript>
+    <p>
+      Chat requires JavaScript.
+      <a href="https://cdn.botpress.cloud/webchat/v1/shareable.html?configUrl=https://files.bpcontent.cloud/2025/07/23/14/20250723143308-2NA09ZZ3.json">
+        Open chat
+      </a>
+    </p>
+  </noscript>
 </body>
 </html>
