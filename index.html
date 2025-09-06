@@ -1,10 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <script src="https://cdn.botpress.cloud/webchat/vX.X/inject.js"></script>
-  <script src="https://files.bpcontent.cloud/xxxx/xx/xx/xx/xxxxxxxxxxxxx-xxxxxxxx.js" defer></script>
+  <meta charset="utf-8" />
+  <title>Botpress Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- стабильный CDN -->
+  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
 </head>
 <body>
-  <!-- Website content -->
+  <script>
+    // читаем uid из URL: ?uid=...
+    const p = new URLSearchParams(location.search);
+    const uid = p.get('uid') || ('guest-' + Date.now());
+
+    // если хочешь — откроем чат сразу
+    window.botpress.on('webchat:ready', () => window.botpress.open());
+
+    // инициализация с передачей user.id
+    window.botpress.init({
+      botId: "9ab72f63-fc63-4913-a260-353aba846edf",
+      clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
+      hostUrl: "https://cdn.botpress.cloud/webchat/v1",
+      messagingUrl: "https://messaging.botpress.cloud",
+      user: { id: uid },               // ← вот тут твой ID летит в бота
+      configuration: {
+        version: "v1",
+        botName: "Bot",
+        themeMode: "light",
+        headerVariant: "glass",
+        variant: "solid",
+        radius: 4,
+        color: "#3276EA",
+        fontFamily: "inter",
+        feedbackEnabled: true,
+        footer: "[⚡ by Botpress](https://botpress.com/?from=webchat)",
+        storageLocation: "sessionStorage"
+      }
+    });
+  </script>
 </body>
 </html>
