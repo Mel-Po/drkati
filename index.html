@@ -2,32 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Botpress Chat</title>
+  <title>Botpress Chat (shareable iframe)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Берём inject.js из v1 -->
-  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+  <style>html,body,iframe{height:100%;width:100%;margin:0;border:0}</style>
 </head>
 <body>
-  <script>
-    window.botpress.on("webchat:ready", () => {
-      window.botpress.open();
-    });
-
-    window.botpress.init({
-      botId: "9ab72f63-fc63-4913-a260-353aba846edf",
-      clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
-
-      hostUrl: "https://cdn.botpress.cloud/webchat/v1",
-      messagingUrl: "https://messaging.botpress.cloud",
-
-      configuration: {
-        version: "v1",
-        botName: "Assistant",
-        themeMode: "light",
-        color: "#3276EA",
-        storageLocation: "sessionStorage"
-      }
-    });
-  </script>
+  <iframe
+    src="https://cdn.botpress.cloud/webchat/latest/shareable.html?configUrl=https://files.bpcontent.cloud/2025/07/23/14/20250723143308-2NA09ZZ3.json"
+    allow="clipboard-read; clipboard-write"
+  ></iframe>
 </body>
 </html>
