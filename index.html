@@ -4,23 +4,45 @@
   <meta charset="utf-8" />
   <title>Botpress Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Скрипт ТОЛЬКО с CDN v3.2 -->
+  <script src="https://cdn.botpress.cloud/webchat/v3.2/inject.js"></script>
+
+  <!-- Не обязательно, но удобно растянуть чат на всю страницу -->
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #webchat, #webchat .bpWebchat { width:100%; height:100%; max-width:100%; max-height:100%; }
+    #webchat .bpFab { display:none; } /* скрыть плавающую кнопку */
+  </style>
 </head>
 <body>
-  <!-- 1) ТОЛЬКО CDN, без локальных файлов -->
-  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-  <script>
-    window.botpressWebChat.init({
-      // 🔧 ключевые строки, чтобы он НЕ искал index.html у тебя на домене:
-      hostUrl: "https://cdn.botpress.cloud/webchat/v1",
-      messagingUrl: "https://messaging.botpress.cloud",
+  <!-- Контейнер для чата -->
+  <div id="webchat"></div>
 
+  <script>
+    // ОТКРЫТЬ чат сразу, как только виджет готов
+    window.botpress?.on?.("webchat:ready", () => window.botpress.open());
+
+    // КРИТИЧЕСКО: хосты указываем явно, чтобы ничего не тянулось с mel-po.github.io
+    window.botpress.init({
       botId: "9ab72f63-fc63-4913-a260-353aba846edf",
       clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
+      selector: "#webchat",
 
-      hideWidget: false,
-      showCloseButton: true,
-      enableReset: true,
-      botName: "Assistant"
+      // ЭТИ ДВЕ СТРОКИ лечат 404 (иначе он ищет index.html у тебя на домене)
+      hostUrl: "https://cdn.botpress.cloud/webchat/v3.2",
+      messagingUrl: "https://messaging.botpress.cloud",
+
+      configuration: {
+        version: "v1",
+        storageLocation: "sessionStorage",
+        themeMode: "light",
+        headerVariant: "glass",
+        variant: "solid",
+        radius: 4,
+        color: "#3276EA",
+        footer: "[⚡ by Botpress](https://botpress.com/?from=webchat)"
+      }
     });
   </script>
 </body>
