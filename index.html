@@ -1,21 +1,27 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Botpress Chat</title>
-  </head>
-  <body>
-    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-    <script>
-      window.botpressWebChat.init({
-        hostUrl: "https://cdn.botpress.cloud/webchat/v1", // 👈 вот эта строка
-        botId: "9ab72f63-fc63-4913-a260-353aba846edf",
-        clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
-        hideWidget: false,
-        showCloseButton: true,
-        enableReset: true,
-        botName: "Assistant"
-      });
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <title>Botpress Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <!-- 1) ТОЛЬКО CDN, без локальных файлов -->
+  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+  <script>
+    window.botpressWebChat.init({
+      // 🔧 ключевые строки, чтобы он НЕ искал index.html у тебя на домене:
+      hostUrl: "https://cdn.botpress.cloud/webchat/v1",
+      messagingUrl: "https://messaging.botpress.cloud",
+
+      botId: "9ab72f63-fc63-4913-a260-353aba846edf",
+      clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
+
+      hideWidget: false,
+      showCloseButton: true,
+      enableReset: true,
+      botName: "Assistant"
+    });
+  </script>
+</body>
 </html>
