@@ -4,13 +4,12 @@
   <meta charset="utf-8" />
   <title>Botpress Chat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Подключаем "latest", потому что v3.2 не существует -->
-  <script src="https://cdn.botpress.cloud/webchat/latest/inject.js"></script>
+  <!-- Берём inject.js из v1 -->
+  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
 </head>
 <body>
   <script>
     window.botpress.on("webchat:ready", () => {
-      // автоматически открыть чат при загрузке
       window.botpress.open();
     });
 
@@ -18,8 +17,7 @@
       botId: "9ab72f63-fc63-4913-a260-353aba846edf",
       clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
 
-      // обязательные параметры
-      hostUrl: "https://cdn.botpress.cloud/webchat/latest",
+      hostUrl: "https://cdn.botpress.cloud/webchat/v1",
       messagingUrl: "https://messaging.botpress.cloud",
 
       configuration: {
