@@ -2,38 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Botpress Chat (iframe)</title>
+  <title>Botpress Chat (iframe only)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     html, body, iframe { height:100%; width:100%; margin:0; border:0; }
   </style>
 </head>
 <body>
-  <script>
-    const options = {
-      botId: "9ab72f63-fc63-4913-a260-353aba846edf",
-      clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
-      hostUrl: "https://cdn.botpress.cloud/webchat/v3.2",
-      messagingUrl: "https://messaging.botpress.cloud",
-      configuration: {
-        version: "v1",
-        storageLocation: "sessionStorage",
-        themeMode: "light",
-        headerVariant: "glass",
-        variant: "solid",
-        radius: 4,
-        color: "#3276EA",
-        footer: "[⚡ by Botpress](https://botpress.com/?from=webchat)"
-      }
-    };
-
-    const src = "https://cdn.botpress.cloud/webchat/v3.2/index.html?options=" +
-                encodeURIComponent(JSON.stringify(options));
-
-    const iframe = document.createElement("iframe");
-    iframe.src = src;
-    iframe.allow = "clipboard-read; clipboard-write";
-    document.body.appendChild(iframe);
-  </script>
+  <iframe
+    src="https://cdn.botpress.cloud/webchat/v3.2/index.html?options=%7B%22botId%22%3A%229ab72f63-fc63-4913-a260-353aba846edf%22%2C%22clientId%22%3A%22c70682e5-9a81-47b2-9725-43b0b291edc6%22%2C%22hostUrl%22%3A%22https%3A%2F%2Fcdn.botpress.cloud%2Fwebchat%2Fv3.2%22%2C%22messagingUrl%22%3A%22https%3A%2F%2Fmessaging.botpress.cloud%22%7D"
+    allow="clipboard-read; clipboard-write"
+    style="height:100%; width:100%; border:0;"
+  ></iframe>
 </body>
 </html>
