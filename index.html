@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Botpress Chat (CDN iframe)</title>
+  <title>Botpress Chat (iframe)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     html, body, iframe { height:100%; width:100%; margin:0; border:0; }
@@ -10,14 +10,11 @@
 </head>
 <body>
   <script>
-    // ⚙️ Параметры твоего бота
     const options = {
       botId: "9ab72f63-fc63-4913-a260-353aba846edf",
       clientId: "c70682e5-9a81-47b2-9725-43b0b291edc6",
-      // хосты указываем явно
       hostUrl: "https://cdn.botpress.cloud/webchat/v3.2",
       messagingUrl: "https://messaging.botpress.cloud",
-      // базовая конфигурация (можно менять)
       configuration: {
         version: "v1",
         storageLocation: "sessionStorage",
@@ -30,14 +27,12 @@
       }
     };
 
-    // 🧩 Собираем прямую ссылку на index.html виджета на CDN с options=...
     const src = "https://cdn.botpress.cloud/webchat/v3.2/index.html?options=" +
                 encodeURIComponent(JSON.stringify(options));
 
-    // ⛳ Вставляем iframe c разрешениями буфера обмена (ботпрос часто просит)
     const iframe = document.createElement("iframe");
     iframe.src = src;
-    iframe.setAttribute("allow", "clipboard-read; clipboard-write");
+    iframe.allow = "clipboard-read; clipboard-write";
     document.body.appendChild(iframe);
   </script>
 </body>
